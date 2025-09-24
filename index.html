@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head> 
-  <meta name="google-site-verification" content="hGx_XYNrZjsaGQS8VxQM1seKUzwqbMnw0cuL-Zgb0AM" />
     <title>Bajarang Lal Kumawat - Frontend Developer</title>
-<meta name="description" content="Portfolio of Bajarang Lal Kumawat, Frontend Web Developer. HTML, CSS, JS projects.">
-<meta name="keywords" content="Bajarang Lal Kumawat, frontend developer, web developer, HTML, CSS, JavaScript">
-<meta name="author" content="Bajarang Lal Kumawat">
+    <meta name="description" content="Portfolio of Bajarang Lal Kumawat, Frontend Web Developer. HTML, CSS, JS projects.">
+    <meta name="keywords" content="Bajarang Lal Kumawat, frontend developer, web developer, HTML, CSS, JavaScript">
+    <meta name="author" content="Bajarang Lal Kumawat">
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +46,15 @@
         }
         .project-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12); 
+            color:  white; 
+            h2{ 
+                color: azure;
+            }
+        }
+        .certificate-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
         .nav-link {
             position: relative;
@@ -71,6 +78,30 @@
             position: relative;
             z-index: 10;
         }
+        
+        /* Certificate grid animation */
+        .certificate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        /* Resume download button */
+        .resume-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        .resume-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        } 
+
+        body { 
+             background-color: #34304a;
+        } 
+        #projects h2{ 
+             color : white
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-gray-800">
@@ -83,6 +114,8 @@
                     <a href="#home" class="nav-link">Home</a>
                     <a href="#skills" class="nav-link">Skills</a>
                     <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#certificates" class="nav-link">Certificates</a>
+                    <a href="#resume" class="nav-link">Resume</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </div>
                 <div class="md:hidden">
@@ -98,6 +131,8 @@
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
+                <a href="#certificates" class="nav-link">Certificates</a>
+                <a href="#resume" class="nav-link">Resume</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
         </div>
@@ -115,6 +150,14 @@
                     <p class="text-lg text-white opacity-90 mb-8">
                         Passionate about creating responsive, user-friendly web experiences with modern technologies.
                     </p>
+                    <div class="flex space-x-4 mb-8">
+                        <a href="#resume" class="resume-btn text-white px-6 py-3 rounded-lg font-medium inline-flex items-center">
+                            <i data-feather="download" class="mr-2"></i> Download Resume
+                        </a>
+                        <a href="#contact" class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors inline-flex items-center">
+                            <i data-feather="mail" class="mr-2"></i> Contact Me
+                        </a>
+                    </div>
                     <div class="bg-black rounded-lg p-6 shadow-xl">
                         <h3 class="text-lg font-semibold text-indigo-600 mb-3">Education</h3>
                         <p class="text-gray-700">B.Tech in Information Technology</p>
@@ -162,7 +205,7 @@
     <!-- Projects Section -->
     <section id="projects" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-16" data-aos="fade-up">My Projects</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-16 color white" data-aos="fade-up">My Projects</h2>
             <div class="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto" data-aos="fade-up">
                 <div class="text-center mb-8">
                     <i data-feather="github" class="w-16 h-16 text-indigo-600 mx-auto mb-4"></i>
@@ -189,7 +232,130 @@
         </div>
     </section>
 
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-16" data-aos="fade-up">My Certificates</h2>
+            <div class="certificate-grid">
+                <!-- Certificate 1 -->
+                <div class="certificate-card bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-indigo-100 flex items-center justify-center">
+                        <i data-feather="award" class="w-16 h-16 text-indigo-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Certificate of Pledge</h3>
+                        <p class="text-gray-600 mb-4">Issued by Cloude counselage</p>
+                        <a href="cloud certificate.png" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
+                            View Certificate <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Certificate 2 -->
+                <div class="certificate-card bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-indigo-100 flex items-center justify-center">
+                        <i data-feather="award" class="w-16 h-16 text-indigo-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2"> Oracle certified foundation association</h3>
+                        <p class="text-gray-600 mb-4">Issued by oracle university-2025</p>
+                        <a href="eCertificate.pdf" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
+                            View Certificate <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Certificate 3 -->
+                <div class="certificate-card bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-indigo-100 flex items-center justify-center">
+                        <i data-feather="award" class="w-16 h-16 text-indigo-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">C++ Programming</h3>
+                        <p class="text-gray-600 mb-4">Issued by simplelearn/skillhub- 2022</p>
+                        <a href="c certificate .pdf" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
+                            View Certificate <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Certificate 4 -->
+                <div class="certificate-card bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-48 bg-indigo-100 flex items-center justify-center">
+                        <i data-feather="award" class="w-16 h-16 text-indigo-600"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">walmart globle Tech</h3> 
+                        <h4>Software Engineering Intern</h4>
+                        <p class="text-gray-600 mb-4">Issued by Forage/US- 2025</p>
+                        <a href="walmart cerificate.pdf" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
+                            View Certificate <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Resume Section -->
+    <section id="resume" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden" data-aos="fade-up">
+                <div class="md:flex">
+                    <div class="md:w-1/3 bg-indigo-600 p-8 text-white flex flex-col justify-between">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-6">My Resume</h2>
+                            <p class="mb-8">Download my comprehensive resume to learn more about my professional journey, skills, and achievements.</p>
+                        </div>
+                        <div class="flex flex-col space-y-4">
+                            <div class="flex items-center">
+                                <i data-feather="file-text" class="w-6 h-6 mr-3"></i>
+                                <span>PDF Format</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="file-text" class="w-6 h-6 mr-3"></i>
+                                <span>2 Pages</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="calendar" class="w-6 h-6 mr-3"></i>
+                                <span>Updated: June 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 p-8 flex flex-col justify-center">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-semibold mb-4">What's Included</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-indigo-600 mr-2 mt-1"></i>
+                                    <span>Professional Summary</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-indigo-600 mr-2 mt-1"></i>
+                                    <span>Technical Skills</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-indigo-600 mr-2 mt-1"></i>
+                                    <span>Work Experience</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-indigo-600 mr-2 mt-1"></i>
+                                    <span>Education</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-indigo-600 mr-2 mt-1"></i>
+                                    <span>Projects & Achievements</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="Bajrang_Lal_Kumawat_Resume11.docx" class="resume-btn text-white px-6 py-4 rounded-lg font-medium text-center inline-flex items-center justify-center">
+                            <i data-feather="download" class="w-6 h-6 mr-3"></i> Download Full Resume (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gray-50">
@@ -322,5 +488,4 @@
         createCodeBackground();
     </script>
 </body>
-
 </html>
