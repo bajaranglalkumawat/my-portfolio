@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const LoginLog = require("./model/LoginLog");
 
 const app = express();
 app.use(express.json());
@@ -81,6 +82,9 @@ app.post("/login", async (req, res) => {
             "mysecretkey",
             { expiresIn: "1h" }
         );
+
+        // Save login data
+        await LoginLog.create({ email });
 
         res.json({
             success: true,
