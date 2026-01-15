@@ -1,103 +1,67 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const LoginLog = require("./model/LoginLog");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// ================= MongoDB =================
+// ================= MongoDB CONNECT =================
 mongoose.connect("mongodb://127.0.0.1:27017/testdb")
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.log(err));
 
-// ================= User Schema =================
-const userSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
+// ================= SCHEMA + MODEL =================
+const loginLogSchema = new mongoose.Schema({
+    email: String,
+    password: String,
     createdAt: {
         type: Date,
         default: Date.now
     }
 });
 
-const User = mongoose.model("User", userSchema);
+const LoginLog = mongoose.model("LoginLog", loginLogSchema);
 
-// ================= Test =================
+// ================= TEST ROUTE =================
 app.get("/", (req, res) => {
     res.send("Backend chal raha hai 🚀");
 });
 
-// ================= Register =================
-app.post("/register", async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        const userExist = await User.findOne({ email });
-        if (userExist) {
-            return res.json({ success: false, message: "User already exists" });
-        }
-
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        await User.create({
-            email,
-            password: hashedPassword
-        });
-
-        res.json({ success: true, message: "Register successful" });
-
-    } catch (err) {
-        res.status(500).json({ success: false, message: "Server error" });
-    }
-});
-
-// ================= Login =================
+// ================= LOGIN API =================
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.json({ success: false, message: "Invalid credentials" });
-        }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.json({ success: false, message: "Invalid credentials" });
-        }
-
-        const token = jwt.sign(
-            { userId: user._id },
-            "mysecretkey",
-            { expiresIn: "1h" }
-        );
-
-        // Save login data
-        await LoginLog.create({ email });
-
-        res.json({
-            success: true,
-            message: "Login successful",
-            token
+        // MongoDB me save
+        await LoginLog.create({
+            email,
+            password
         });
 
+        if (email === "test@gmail.com" && password === "123") {
+            res.json({ success: true, message: "Login success & saved" });
+        } else {
+            res.json({ success: false, message: "Invalid credentials but saved" });
+        }
+
     } catch (err) {
+        console.log(err);
         res.status(500).json({ success: false, message: "Server error" });
     }
 });
 
-// ================= Server Start =================
+// ================= USERS DATA API =================
+app.get("/users", async (req, res) => {
+    try {
+        const users = await LoginLog.find();
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: "Error fetching users" });
+    }
+});
+
+// ================= SERVER START =================
 app.listen(5000, () => {
-    console.log("Server running on port 5000");
+    console.log("Server started on port 5000");
 });
